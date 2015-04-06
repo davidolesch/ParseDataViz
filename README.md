@@ -7,7 +7,7 @@ Get started by adding parseDataViz.js to your `cloud` directory within your Pars
 
 # Using
 
-After installing you will have a new CloudFunction to play with. You can run this CloudFunction on all the Parse platforms. In Javascript it looks like:
+After installing you will have a new CloudFunction to play with. You can run this CloudFunction on all the Parse platforms. In Javascript, if `Photo` is the name of your Parse class, it looks like:
 
 ```
 Parse.Cloud.run('topDistinctValues', {"className": "Photo", "numberOfDays": "7"}, {
