@@ -6,7 +6,7 @@ Parse.Cloud.define("topDistinctValues", function(request, response) {
   query.greaterThanOrEqualTo("createdAt", daysAgoDate(numberOfDays));
   var columnNames;
   var columns= {};
-  var responseString = "";
+  var responseColumns = [];
 
   query.first(function(row) {
     if( row === undefined ) {
@@ -47,13 +47,17 @@ Parse.Cloud.define("topDistinctValues", function(request, response) {
           uniques.sort(function(a,b) {
             return b.count - a.count;// Descending order.
           });
-          responseString += ("There are "+ uniques.length  +" unique values for "+columnName+ ".\n");
+          var responseColumn = {"columnName": columnName, "distinctValueCount": uniques.length};
+          var responseDistinctValues = [];
           for( var i = 0 ; i < uniques.length && i < 10 ; i++ ) {
-            responseString += (uniques[i]["count"] + " " + className  + " are " + columnName + " = " + uniques[i]["value"] + "\n");
+            var responseDistinctValue = {"value": uniques[i]["value"], "count": uniques[i]["count"]};
+            responseDistinctValues.push(responseDistinctValue);
           }
+          responseColumn["distinctValues"] = responseDistinctValues;
+          responseColumns.push(responseColumn);
         }
       }).then(function() {
-        response.success(responseString);
+        response.success(responseColumns);
       });
     } 
   })

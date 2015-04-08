@@ -12,10 +12,21 @@ After installing you will have a new CloudFunction to play with. You can run thi
 ```
 Parse.Cloud.run('topDistinctValues', {"className": "Photo", "numberOfDays": "7"}, {
   success: function(result) {
-    console.log(result);
+    console.log(JSON.stringify(result));
   },
   error: function(error) {
    console.log(error);
   }
 });
 ```
+
+The data you get back in `result` will be structured as follows:
+
+* columns (array)
+  * column (dictionary)
+    * columnName (string)
+    * distinctValueCount (number)
+    * distinctValues (array)
+      * distinctValue (dictionary)
+        * value (string)
+        * count (number)
