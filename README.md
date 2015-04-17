@@ -1,5 +1,5 @@
 # ParseDataViz
-ParseDataViz a collection of CloudFunctions that crawl your Parse.com data to give you insights. The first CloudFunction, called `topDistinctValues` looks at a Parse class and tells you what the distinct values are in each column sorted by the number of occurrences of each distinct value.
+ParseDataViz is a collection of CloudFunctions that crawl your Parse.com data to give you insights. The first CloudFunction, called `topDistinctValues` looks at a Parse class and tells you what the distinct values are in each column sorted by the number of occurrences of each distinct value.
 
 # Installing
 
